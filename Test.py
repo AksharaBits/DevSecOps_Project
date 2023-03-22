@@ -1,7 +1,7 @@
 if __name__ == "__main__" :
     
   num1 = 15
-  num2 = 12
+  num2 = 16
     
   # Adding two numbers
   sum_twoNum = lambda num1, num2 : num1 + num2
