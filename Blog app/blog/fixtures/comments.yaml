@@ -1,0 +1,42 @@
+- model: blog.comment
+  pk: 1
+  fields:
+    user: 2
+    post: 1
+    body: 'Very informative'
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.comment
+  pk: 2
+  fields:
+    user: 3
+    post: 2
+    body: 'Really interesting!'
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.comment
+  pk: 3
+  fields:
+    user: 1
+    post: 3
+    body: 'Thanks for posting this, very interesting.'
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.comment
+  pk: 4
+  fields:
+    user: 3
+    post: 1
+    body: 'Very interesting read.'
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.comment
+  pk: 5
+  fields:
+    user: 2
+    post: 2
+    body: 'Amazing to know.'
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.comment
+  pk: 6
+  fields:
+    user: 3
+    post: 3
+    body: 'This is very innovative and interesting.'
+    pub_date: '2017-12-03T12:19:36+00:00'

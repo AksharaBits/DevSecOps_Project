@@ -1,0 +1,28 @@
+- model: blog.post
+  pk: 1
+  fields:
+    user: 2
+    title: AI Applications
+    body: "Artificial Intelligence has various applications in today's society.
+          It is becoming essential for today's time because it can solve complex
+          problems with an efficient way in multiple industries, such as Healthcare, entertainment, finance, education, etc. 
+          AI is making our daily life more comfortable and fast."
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.post
+  pk: 2
+  fields:
+    user: 3
+    title: Agile Methodology
+    body: 'Agile is an iterative approach to project management and software development that helps teams deliver value
+     to their customers faster and with fewer headaches.
+     Instead of betting everything on a "big bang" launch, an agile team delivers work in small, but consumable, increments.'
+    pub_date: '2017-12-03T12:19:36+00:00'
+- model: blog.post
+  pk: 3
+  fields:
+    user: 1
+    title: Smart Factories
+    body: 'An interconnected network of machines, communication mechanisms, and computing power, 
+    the smart factory is a cyber-physical system that uses advanced technologies such as artificial intelligence (AI) and machine learning to analyze data, 
+    drive automated processes, and learn as it goes.'
+    pub_date: '2016-12-13T12:19:36+00:00'
