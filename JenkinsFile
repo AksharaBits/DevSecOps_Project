@@ -1,11 +1,36 @@
 node {
+def app
+
   stage('SCM') {
     checkout scm
   }
+  
   stage('SonarQube Analysis') {
     def scannerHome = tool 'sonarqube_scanner';
     withSonarQubeEnv() {
       sh "${scannerHome}/bin/sonar-scanner"
     }
+    
   }
+  
+  stage('Build')
+  {
+   app = docker.build("DevSecOps/Blogapp")
+  }
+  
+  stage('Unit Test')
+  {
+  
+  }
+  
+  stage('Integration Test')
+  {
+  
+  }
+  
+  stage('Deployment')
+  {
+  
+  }
+  
 }
