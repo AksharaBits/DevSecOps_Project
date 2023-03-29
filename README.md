@@ -1,4 +1,5 @@
 # DevSecOps_Project
 
-This is a sample application for DevSecaops pipeline testing.
-Test 123456789
+This is a sample application for DevSecOps pipeline testing.
+The Jenkins pipeline is triggered automatically when the code is pushed to the git repo.
+
