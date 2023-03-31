@@ -1,6 +1,8 @@
 node {
 def app
-
+ environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
   stage('SCM') {
     checkout scm
   }
@@ -13,11 +15,16 @@ def app
     
   }
   
-  stage('Build')
-  {
-   app = docker.build("DevSecOps/Blogapp")
-  }
   
+    stage('Build') {
+      steps {
+        sh 'docker build -t lloydmatereke/jenkins-docker-hub .'
+     
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+    
+        sh 'docker push lloydmatereke/jenkins-docker-hub'
+      }
+    }
   stage('Unit Test')
   {
   
@@ -32,5 +39,15 @@ def app
   {
   
   }
+  }
+  post {
+    always {
+      sh 'docker logout'
+    }
+  }
+  }
+
   
-}
+  
+  
+
