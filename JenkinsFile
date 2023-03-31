@@ -39,7 +39,7 @@ def app
   {
   
   }
-  }
+  
   post {
     always {
       sh 'docker logout'
