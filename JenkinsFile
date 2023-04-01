@@ -2,9 +2,7 @@ node docker-agent{
 
 
 def app
- environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-  }
+
   stage('SCM') {
     checkout scm
   }
