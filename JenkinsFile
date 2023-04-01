@@ -1,4 +1,6 @@
-node {
+node docker-agent{
+
+
 def app
  environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
