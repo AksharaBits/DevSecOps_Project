@@ -7,18 +7,21 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
-   agent {label 'docker-agent'}
+   
     stage('Build') {
+    agent {label 'docker-agent'}
       steps {
         sh 'docker build -t lloydmatereke/jenkins-docker-hub .'
       }
     }
     stage('Login') {
+    agent {label 'docker-agent'}
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
+    agent {label 'docker-agent'}
       steps {
         sh 'docker push lloydmatereke/jenkins-docker-hub'
       }
