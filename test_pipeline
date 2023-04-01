@@ -1,5 +1,5 @@
 pipeline {
- agent none
+ agent {label 'docker-agent'}
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -9,19 +9,19 @@ pipeline {
   stages {
    
     stage('Build') {
-    agent {label 'docker-agent'}
+   
       steps {
         sh 'docker build -t lloydmatereke/jenkins-docker-hub .'
       }
     }
     stage('Login') {
-    agent {label 'docker-agent'}
+
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
-    agent {label 'docker-agent'}
+   
       steps {
         sh 'docker push lloydmatereke/jenkins-docker-hub'
       }
