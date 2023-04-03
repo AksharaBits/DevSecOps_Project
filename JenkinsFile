@@ -18,7 +18,7 @@ stage('SonarQube Analysis') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("-f Blog_app/docker/Dockerfile -t getintodevops/hellonode")
+        app = docker.build("getintodevops/hellonode", "./Blog app/docker")
     }
 
     stage('Test image') {
