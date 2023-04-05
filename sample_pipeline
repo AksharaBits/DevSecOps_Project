@@ -15,7 +15,8 @@ stage('Building our image') {
 steps{
 dir('Blog app'){
 script {
-dockerImage = docker.build(registry + ":$BUILD_NUMBER", "docker/")
+sh 'docker build -t registry + ":$BUILD_NUMBER" -f docker/Dockerfile .'
+//dockerImage = docker.build(registry + ":$BUILD_NUMBER", "docker/")
 }
 }
 }
@@ -24,7 +25,8 @@ stage('Deploy our image') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
-dockerImage.push()
+ sh 'docker push registry'
+//dockerImage.push()
 }
 }
 }
