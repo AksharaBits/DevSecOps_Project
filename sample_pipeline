@@ -1,19 +1,27 @@
 pipeline {
 environment {
 registry = "aksharabits/sample"
-registryCredential = 'Dockerhub'
 dockerImage = ''
 DOCKERHUB_CREDENTIALS = credentials('dockerhub_cred')
-  
+scannerHome = tool 'sonarqube_scanner'
+
 }
-agent {label 'docker-agent'}
+agent any
 stages {
 stage('Cloning our Git') {
 steps {
 git 'https://github.com/AksharaBits/DevSecOps_Project.git'
 }
 }
+stage('SonarQube Analysis') {
+    
+    withSonarQubeEnv() {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+    
+  }
 stage('Building our image') {
+agent {label 'docker-agent'}
 steps{
 dir('Blog app'){
 script {
@@ -24,13 +32,14 @@ sh 'docker build -t "$registry:$BUILD_NUMBER" -f docker/Dockerfile .'
 }
 }
 stage('Login') {
-
+agent {label 'docker-agent'}
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
 stage('Deploy our image') {
+agent {label 'docker-agent'}
 steps{
 script {
 //docker.withRegistry( '', registryCredential ) {
@@ -41,6 +50,7 @@ script {
 }
 }
 stage('Cleaning up') {
+agent {label 'docker-agent'}
 steps{
 sh "docker rmi $registry:$BUILD_NUMBER"
 }
@@ -48,6 +58,7 @@ sh "docker rmi $registry:$BUILD_NUMBER"
 
 }
 post {
+agent {label 'docker-agent'}
 		always {
 			sh 'docker logout'
 		}
