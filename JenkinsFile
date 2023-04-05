@@ -17,8 +17,9 @@ stage('SonarQube Analysis') {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
-        app = docker.build("getintodevops/hellonode", "./Blog app/docker")
+        dir('Blog app'){
+        app = docker.build("aksharabits/sample", "./docker")
+        }
     }
 
     stage('Test image') {
