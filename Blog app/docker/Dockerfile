@@ -2,7 +2,7 @@ FROM python:3.11-alpine
 
 EXPOSE 8000
 
-ENV WORKING_DIR ..
+ENV WORKING_DIR /DevSecOps_Project/Blog app
 
 # Python dependencies
 COPY requirements.txt .
