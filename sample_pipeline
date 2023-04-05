@@ -23,13 +23,20 @@ sh 'docker build -t "$registry:$BUILD_NUMBER" -f docker/Dockerfile .'
 }
 }
 }
+stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
 stage('Deploy our image') {
 steps{
 script {
-docker.withRegistry( '', registryCredential ) {
+//docker.withRegistry( '', registryCredential ) {
  sh 'docker push registry'
 //dockerImage.push()
-}
+//}
 }
 }
 }
@@ -38,5 +45,11 @@ steps{
 sh "docker rmi $registry:$BUILD_NUMBER"
 }
 }
+
 }
+post {
+		always {
+			sh 'docker logout'
+		}
+	}
 }
