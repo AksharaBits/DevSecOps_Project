@@ -5,7 +5,7 @@ EXPOSE 8000
 ENV WORKING_DIR /app
 
 # Python dependencies
-COPY requirements.txt .
+COPY ../requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR $WORKING_DIR
