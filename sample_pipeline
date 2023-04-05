@@ -3,7 +3,7 @@ environment {
 registry = "aksharabits/sample"
 registryCredential = 'Dockerhub'
 dockerImage = ''
-DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+DOCKERHUB_CREDENTIALS = credentials('dockerhub_cred')
   
 }
 agent {label 'docker-agent'}
