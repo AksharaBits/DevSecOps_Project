@@ -4,7 +4,7 @@ registry = "aksharabits/sample"
 registryCredential = 'aksharabits'
 dockerImage = ''
 }
-agent {docker-agent}
+agent {label 'docker-agent'}
 stages {
 stage('Cloning our Git') {
 steps {
