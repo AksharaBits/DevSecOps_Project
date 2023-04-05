@@ -1,8 +1,10 @@
 pipeline {
 environment {
 registry = "aksharabits/sample"
-registryCredential = 'aksharabits'
+registryCredential = 'dockerhub'
 dockerImage = ''
+DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  
 }
 agent {label 'docker-agent'}
 stages {
