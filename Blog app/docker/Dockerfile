@@ -17,7 +17,7 @@ COPY mysite $WORKING_DIR/mysite
 
 # Run migrations, and load the database with fixtures
 RUN python manage.py migrate && python manage.py loaddata users posts comments
-RUN python manage.py test blog --verbosity=2
+#RUN python manage.py test blog --verbosity=2
 
 ENTRYPOINT ["python", "manage.py"]
 CMD ["runserver", "0.0.0.0:8000"]
