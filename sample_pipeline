@@ -40,8 +40,8 @@ agent {label 'docker-agent'}
 steps{
 dir('Blog app'){
 script {
-sh 'docker run --name web_app $registry:$BUILD_NUMBER'
-sh 'docker exec -it web_app py manage.py test blog --verbosity=2'
+sh 'docker run --name blog_app $registry:$BUILD_NUMBER'
+sh 'docker exec -it blog_app py manage.py test blog --verbosity=2'
 //sh 'docker run --tty --name $registry:$BUILD_NUMBER : py manage.py test blog --verbosity=2'
 }
 }
