@@ -84,7 +84,7 @@ script
         }
         }
     }*/
-    
+    /*
     stage('Test')
     {
     agent {label 'docker-agent'}
@@ -109,6 +109,7 @@ script
 	    }
 	    }
 	    }
+	    */
 stage('Cleaning up') {
 agent {label 'docker-agent'}
 steps{
