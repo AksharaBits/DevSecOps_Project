@@ -79,6 +79,7 @@ script
     agent {label 'docker-agent'}
     steps{
     script{
+    try{
      docker.image($registry:$BUILD_NUMBER).withRun('-d=true -p 8888:8080') {c ->
             docker.image($registry:$BUILD_NUMBER).inside{
 	    
@@ -89,6 +90,10 @@ script
 			
 	    }
 	    }
+	    }
+	    catch(exc){
+	    sh "docker logs ${h.id}"
+            throw exc
 	    }
 	    }
 	    }
