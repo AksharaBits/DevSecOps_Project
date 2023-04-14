@@ -41,7 +41,7 @@ steps{
 dir('Blog app'){
 script {
 sh 'docker run --name blog_app_$BUILD_NUMBER -d $registry:$BUILD_NUMBER'
-sh 'docker exec -it blog_app_$BUILD_NUMBER python manage.py test blog --verbosity=2'
+sh 'docker exec -t blog_app_$BUILD_NUMBER python manage.py test blog --verbosity=2'
 //sh 'docker run --tty --name $registry:$BUILD_NUMBER : py manage.py test blog --verbosity=2'
 }
 }
