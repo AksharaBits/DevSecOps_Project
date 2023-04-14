@@ -36,8 +36,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_jenkins',
 ]
+'''
+PROJECT_APPS = ('blog')
+INSTALLED_APPS += PROJECT_APPS
 
+JENKINS_TASKS = (
+        'django_jenkins.tasks.with_coverage',
+        'django_jenkins.tasks.django_tests',
+        'django_jenkins.tasks.run_pep8',
+        'django_jenkins.tasks.run_pyflakes',
+    )
+'''
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -46,6 +57,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'DjangoLibrary.middleware.AutologinAuthenticationMiddleware',
+  #  'DjangoLibrary.middleware.FactoryBoyMiddleware',
+   # 'DjangoLibrary.middleware.QuerySetMiddleware'
+
 ]
 
 ROOT_URLCONF = 'mysite.urls'

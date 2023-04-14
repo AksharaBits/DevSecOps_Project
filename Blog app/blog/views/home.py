@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render
-
+from django.views.decorators.http import require_http_methods,require_GET
 from blog.models.post import Post
 
 NUM_OF_POSTS = 5
 
-
+@require_GET
 def home(request, username=None):
     first_name = ''
     last_name = ''
