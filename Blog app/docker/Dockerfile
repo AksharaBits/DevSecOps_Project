@@ -26,4 +26,4 @@ RUN python manage.py migrate && python manage.py loaddata users posts comments
 #RUN python manage.py test blog --verbosity=2
 
 ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000", "mysite.wsgi:application"]
+CMD ["runserver", "0.0.0.0:8000"]
