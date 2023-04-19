@@ -7,10 +7,6 @@ ENV WORKING_DIR /app
 # Python dependencies
 COPY requirements.txt .
 # update docker-iamage packages
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y netcat-openbsd gcc && \
-    apt-get clean
  
 # update pip 
 RUN pip install --upgrade pip
