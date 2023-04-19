@@ -36,7 +36,7 @@ agent {label 'docker-agent'}
 steps{
 dir('Blog app'){
 script {
- sh "sudo chown root:jenkins /run/docker.sock"
+ sh "chown root:jenkins /run/docker.sock"
 sh 'docker build -t "$registry:$BUILD_NUMBER" -f docker/Dockerfile .'
 //dockerImage = docker.build("$registry:$BUILD_NUMBER", "docker/")
 }
