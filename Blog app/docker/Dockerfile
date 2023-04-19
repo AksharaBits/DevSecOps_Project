@@ -6,6 +6,16 @@ ENV WORKING_DIR /app
 
 # Python dependencies
 COPY requirements.txt .
+# update docker-iamage packages
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y netcat-openbsd gcc && \
+    apt-get clean
+ 
+# update pip 
+RUN pip install --upgrade pip
+# install psycopg for connect to pgsql
+RUN pip install psycopg2-binary
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 WORKDIR $WORKING_DIR
@@ -20,4 +30,4 @@ RUN python manage.py migrate && python manage.py loaddata users posts comments
 #RUN python manage.py test blog --verbosity=2
 
 ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+CMD ["runserver", "0.0.0.0:8000", "mysite.wsgi:application"]
