@@ -52,7 +52,7 @@ steps{
 script {
 sh 'docker run --name blog_app_$BUILD_NUMBER -d $registry:$BUILD_NUMBER'
 sh 'docker exec -t blog_app_$BUILD_NUMBER python manage.py test blog -v 2 --testrunner blog.tests.views.html_test_reporter.HtmlTestReporter'
-sh 'docker cp "blog_app_$BUILD_NUMBER:/app/reports/all_tests.html" "/reports/"'
+//sh 'docker cp "blog_app_$BUILD_NUMBER:/app/reports/all_tests.html" "/reports/"'
 //sh 'docker logs'
 //sh 'docker run --tty --name $registry:$BUILD_NUMBER : py manage.py test blog --verbosity=2'
 
@@ -85,6 +85,7 @@ stage ('Deployment of Web App')
 agent {label 'docker-agent'}
 steps{
 script {
+sh 'docker run -it --name deployed_app -p 8000:8000 $registry:$BUILD_NUMBER'
 
 }
 }
