@@ -51,7 +51,7 @@ dir('Blog app'){
 script {
 sh 'docker run --name blog_app_$BUILD_NUMBER -d $registry:$BUILD_NUMBER'
 sh 'docker exec -t blog_app_$BUILD_NUMBER python manage.py test blog -v 2 --testrunner blog.tests.views.html_test_reporter.HtmlTestReporter'
-
+sh 'docker cp blog_app_$BUILD_NUMBER:/Blog app/blog/reports/all_tests.html /reports/
 //sh 'docker logs'
 //sh 'docker run --tty --name $registry:$BUILD_NUMBER : py manage.py test blog --verbosity=2'
 }
@@ -66,7 +66,7 @@ steps {
 }
 }
 */
-stage('Deployment') {
+stage('Upload Docker Image') {
 agent {label 'docker-agent'}
 steps{
 script {
@@ -75,6 +75,16 @@ sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR
  sh 'docker push "$registry:$BUILD_NUMBER"'
 //dockerImage.push("$registry:$BUILD_NUMBER")
 //}
+}
+}
+}
+
+stage ('Deployment of Web App')
+{
+agent {label 'docker-agent'}
+steps{
+script {
+
 }
 }
 }
@@ -135,7 +145,7 @@ sh "docker rmi $registry:$BUILD_NUMBER"
 post {
         always {
 	agent {label 'docker-agent'}
-            archiveArtifacts artifacts: '*.html', onlyIfSuccessful: true
+            archiveArtifacts artifacts: '/reports/*.html', onlyIfSuccessful: true
         }
     }
 }
