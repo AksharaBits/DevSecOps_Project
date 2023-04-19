@@ -4,3 +4,4 @@ pyYAML>=6.0
 ipython>=7.34.0
 django-jenkins
 robotframework-djangolibrary
+html-testRunner  
