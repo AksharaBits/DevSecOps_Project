@@ -134,6 +134,7 @@ sh "docker rmi $registry:$BUILD_NUMBER"
 }
 post {
         always {
+	agent {label 'docker-agent'}
             archiveArtifacts artifacts: 'Blog app/reports/all_tests.html', onlyIfSuccessful: true
         }
     }
