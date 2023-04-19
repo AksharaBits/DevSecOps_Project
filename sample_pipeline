@@ -36,7 +36,7 @@ agent {label 'docker-agent'}
 steps{
 dir('Blog app'){
 script {
- sh "chown root:jenkins /run/docker.sock"
+// sh "chown root:jenkins /run/docker.sock"
 sh 'docker build -t "$registry:$BUILD_NUMBER" -f docker/Dockerfile .'
 //dockerImage = docker.build("$registry:$BUILD_NUMBER", "docker/")
 }
@@ -52,7 +52,7 @@ steps{
 script {
 sh 'docker run --name blog_app_$BUILD_NUMBER -d $registry:$BUILD_NUMBER'
 sh 'docker exec -t blog_app_$BUILD_NUMBER python manage.py test blog -v 2 --testrunner blog.tests.views.html_test_reporter.HtmlTestReporter'
-sh 'docker cp "blog_app_$BUILD_NUMBER:/app/reports/all_tests.html" "/reports/" -u root:sudo'
+sh 'docker cp "blog_app_$BUILD_NUMBER:/app/reports/all_tests.html" "/reports/"'
 //sh 'docker logs'
 //sh 'docker run --tty --name $registry:$BUILD_NUMBER : py manage.py test blog --verbosity=2'
 
