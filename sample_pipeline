@@ -31,7 +31,7 @@ stage('SonarQube Analysis') {
             }
         }
 */
-stage('Build and Unit Test') {
+stage('Build') {
 agent {label 'docker-agent'}
 steps{
 dir('Blog app'){
@@ -58,17 +58,19 @@ sh 'docker exec -t blog_app_$BUILD_NUMBER python manage.py test blog -v 2 --test
 }
 }
 }
+/*
 stage('Login') {
 agent {label 'docker-agent'}
 steps {
 	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 }
 }
-
-stage('Deploy our image') {
+*/
+stage('Deployment') {
 agent {label 'docker-agent'}
 steps{
 script {
+sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 //docker.withRegistry( '', registryCredential ) {
  sh 'docker push "$registry:$BUILD_NUMBER"'
 //dockerImage.push("$registry:$BUILD_NUMBER")
