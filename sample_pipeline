@@ -85,7 +85,7 @@ stage ('Deployment of Web App')
 agent {label 'docker-agent'}
 steps{
 script {
-sh 'docker run -d --name deployed_app -p 8000:8000 $registry:$BUILD_NUMBER'
+sh 'docker run -d --name Blog_app_$BUILD_NUMBER -p 8000:8000 $registry:$BUILD_NUMBER'
 }
 }
 }
