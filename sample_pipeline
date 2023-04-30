@@ -53,6 +53,7 @@ script {
 sh 'docker run --name blog_app_$BUILD_NUMBER -d $registry:$BUILD_NUMBER'
 sh 'docker exec -t blog_app_$BUILD_NUMBER python manage.py test blog -v 2 --testrunner blog.tests.views.html_test_reporter.HtmlTestReporter'
 //sh 'lsof'
+sh 'sudo su'
 sh 'docker cp "blog_app_$BUILD_NUMBER:/app/reports/all_tests.html" "/reports/"'
 
 //sh 'docker logs'
