@@ -37,6 +37,8 @@ steps{
 dir('Blog app'){
 script {
 // sh "chown root:jenkins /run/docker.sock"
+sh 'docker stop $(docker ps -aq)'
+sh 'docker rm $(docker ps -aq)'
 sh 'docker build -t "$registry:$BUILD_NUMBER" -f docker/Dockerfile .'
 //dockerImage = docker.build("$registry:$BUILD_NUMBER", "docker/")
 }
