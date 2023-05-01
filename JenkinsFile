@@ -11,7 +11,7 @@ agent any
 stages {
 stage('Cloning our Git') {
 steps {
-#sh 'echo "Fetching source code..."'
+//sh 'echo "Fetching source code..."'
 git 'https://github.com/AksharaBits/DevSecOps_Project.git'
 }
 }
