@@ -26,13 +26,13 @@ stage('SonarQube Analysis') {
 
  stage("Quality Gate") {
             steps {
-             // withSonarQubeEnv('SonarQube_GCP') {
+            
                 timeout(time: 5, unit: 'MINUTES') {
                     // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: false
                 }
-            //    }
+           
             }
         }
 
