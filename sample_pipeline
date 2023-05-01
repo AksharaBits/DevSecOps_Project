@@ -4,7 +4,7 @@ registry = "aksharabits/sample"
 dockerImage = ''
 DOCKERHUB_CREDENTIALS = credentials('dockerhub_cred')
 scannerHome = tool 'sonarqube_scanner'
-workspace = env.WORKSPACE
+workspace = "${env.WORKSPACE}"
 }
 agent any
 stages {
