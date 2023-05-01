@@ -100,7 +100,11 @@ post {
 	dir("${workspace_dir}"){
             archiveArtifacts 'all_tests.html'
 	    }
-	    cleanWs()
-        }
+
+	    cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    )
     }
 }
