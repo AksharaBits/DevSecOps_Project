@@ -6,6 +6,7 @@ from blog.models.post import Post
 
 USERNAME_JOHN = 'john_lennon'
 PASSWORD_JOHN = 'john_password'
+EMAIL_JOHN = 'lennon@thebeatles.com'
 USERNAME_GEORGE = 'george_harrison'
 PASSWORD_GEORGE = 'george_password'
 
@@ -14,9 +15,9 @@ class PostViewTest(TestCase):
 
     def setUp(self):
         self.test_user_john = User.objects.create_user(
-            USERNAME_JOHN, 'lennon@thebeatles.com', PASSWORD_JOHN)
+            USERNAME_JOHN, EMAIL_JOHN, PASSWORD_JOHN)
         self.test_user_george = User.objects.create_user(
-            USERNAME_GEORGE, 'lennon@thebeatles.com', PASSWORD_GEORGE)
+            USERNAME_GEORGE, EMAIL_JOHN, PASSWORD_GEORGE)
         self.test_post_john = Post.objects.create(user=self.test_user_john,
                                                   title='Title 1',
                                                   body='Lorem ipsum')
@@ -39,7 +40,7 @@ class PostCreateTest(TestCase):
 
     def setUp(self):
         self.test_user_john = User.objects.create_user(
-            USERNAME_JOHN, 'lennon@thebeatles.com', PASSWORD_JOHN)
+            USERNAME_JOHN, EMAIL_JOHN, PASSWORD_JOHN)
         self.url = reverse('blog:create_post')
 
     def test_create_post_by_anonymous_user(self):
@@ -67,9 +68,9 @@ class PostUpdateTest(TestCase):
 
     def setUp(self):
         self.test_user_john = User.objects.create_user(
-            USERNAME_JOHN, 'lennon@thebeatles.com', PASSWORD_JOHN)
+            USERNAME_JOHN, EMAIL_JOHN, PASSWORD_JOHN)
         self.test_user_george = User.objects.create_user(
-            USERNAME_GEORGE, 'lennon@thebeatles.com', PASSWORD_GEORGE)
+            USERNAME_GEORGE, EMAIL_JOHN, PASSWORD_GEORGE)
         self.test_post_john = Post.objects.create(user=self.test_user_john,
                                                   title='Title 1',
                                                   body='Lorem ipsum')
@@ -110,9 +111,9 @@ class PostDeleteTest(TestCase):
 
     def setUp(self):
         self.test_user_john = User.objects.create_user(
-            USERNAME_JOHN, 'lennon@thebeatles.com', PASSWORD_JOHN)
+            USERNAME_JOHN, EMAIL_JOHN, PASSWORD_JOHN)
         self.test_user_george = User.objects.create_user(
-            USERNAME_GEORGE, 'lennon@thebeatles.com', PASSWORD_GEORGE)
+            USERNAME_GEORGE, EMAIL_JOHN, PASSWORD_GEORGE)
         self.test_post_john = Post.objects.create(user=self.test_user_john,
                                                   title='Title 1',
                                                   body='Lorem ipsum')
