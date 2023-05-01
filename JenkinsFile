@@ -95,13 +95,14 @@ sh 'docker run -d --name Blog_app_$BUILD_NUMBER -p 8000:8000 $registry:$BUILD_NU
 }
 
 post {
-        always {
+success{
 	agent {label 'docker-agent'}
 
 	dir("${workspace_dir}"){
             archiveArtifacts 'all_tests.html'
 	    }
-
+	    }
+    cleanup {
 	   cleanWs(cleanWhenNotBuilt: false,
                     deleteDirs: true,
                     disableDeferredWipeout: true,
